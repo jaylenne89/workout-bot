@@ -46,7 +46,6 @@ full_body_moves = ["Burpees", "Single Arm KB Snatch", "Ball Slams",
 
 
 
-
 def parse_bot_commands(slack_events):
     """
         Parses a list of events coming from the Slack RTM API to find bot commands.
@@ -105,10 +104,7 @@ def handle_command(command, channel):
     # Finds and executes the given command, filling in response
     response = None
     # This is where you start to implement more commands!
-    #first lets do the lower body commands 
-    
-    
-    #TODO 
+    #first lets do the lower body commands
     
     if command.startswith(UPPER_BODY_COMMAND):
         response = "Of course! Heres an upper body workout: "+"\n"+"Each block 3 rounds before moving on. (8-10 reps) "+"```{}```".format(heh_upper_body_workout_maker())
@@ -119,19 +115,13 @@ def handle_command(command, channel):
     elif command.startswith(FULL_BODY_COMMAND):
         response = "Of course! Heres a full body workout: "+"\n"+"Reps go up each round in Prime factors, complete after 40 minutes. "+"```{}```".format(primed_weekend_full_body_workout_maker())
 
-
-
-
     # Sends the response back to the channel
     slack_client.api_call(
         "chat.postMessage",
         channel=channel,
         text=response or default_response
     )
-
-
-
-
+	
 if __name__ == "__main__":
     if slack_client.rtm_connect(with_team_state=False):
         print("Starter Bot connected and running!")
